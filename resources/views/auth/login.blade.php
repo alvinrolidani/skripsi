@@ -8,12 +8,9 @@
                         <div class="bg-login text-center">
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50 mb-0">Sign in to continue to Qovex.</p>
-                                <a href="index.html" class="logo logo-admin mt-4">
-                                    <img src="/templates/layouts/assets/images/logoSmanell.png" alt=""
-                                        height="60">
-                                </a>
+                                <h5 class="text-white font-size-20">Selamat Datang !</h5>
+                                <p class="text-white-50 mb-0">Silahkan Login Terlebih Dahulu</p>
+
                             </div>
                         </div>
 
@@ -41,14 +38,14 @@
                                         <input type="text" class="form-control" id="floatingInput" name="username"
                                             placeholder="12345">
 
-                                        <label for="floatingInput">Username or NISN</label>
+                                        <label for="floatingInput">Username</label>
 
                                     </div>
 
                                     <div class="form-floating mb-3">
                                         <input type="password" class="form-control" id="userpassword" name="password"
                                             id="floatingInput" placeholder="Enter password">
-                                        <label for="floatingInput">Password</label>
+                                        <label for="floatingInput">Kata Sandi</label>
                                     </div>
 
 
@@ -58,26 +55,20 @@
                                             type="submit">Masuk</button>
                                     </div>
 
-                                    <div class="mt-4 text-center">
-                                        <p>Tidak punya akun ? <a href="/register" class="fw-medium text-primary">
-                                                Daftar disini</a> </p>
 
-                                    </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-                        Themesbrand
-                        </p>
-                    </div>
-
                 </div>
+                <div class="text-center">
+
+                    <script>
+                        document.write(new Date().getFullYear() + " &copy SPK Toko Yang Layak by Alvin Rolidani")
+                    </script>
+                    </p>
+                </div>
+
             </div>
         </div>
     </div>

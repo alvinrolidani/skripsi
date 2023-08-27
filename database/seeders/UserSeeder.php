@@ -17,17 +17,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
-
-
-
 
         $data = [
             'name' => 'Alvin Rolidani',
-            'username' => 'alvinrolidani',
+            'username' => 'admin',
             'password' => bcrypt('123'),
-            'level' => 'superadmin'
+            'level' => 'admin'
         ];
-        User::firstOrCreate($data);
+        User::insert($data);
     }
 }

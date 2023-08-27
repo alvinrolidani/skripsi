@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kriteria', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode_kriteria', 50);
+            $table->integer('id')->autoIncrement();
             $table->string('nama_kriteria', 50);
-            $table->timestamps();
+            $table->enum('atribut_kriteria', ['benefit', 'cost']);
+            $table->float('bobot_kriteria', 5, 4);
         });
     }
 

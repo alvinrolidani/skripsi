@@ -30,39 +30,55 @@
                  <li class="menu-title">Beranda</li>
 
                  <li>
+
                      <a href="{{ route('dashboard') }}" class="waves-effect">
                          <i class="mdi mdi-airplay"></i>
                          <span>Dashboard</span>
                      </a>
 
                  </li>
+                 @if (auth()->user()->level == 'admin')
+                     <li>
+                         <a href="{{ route('toko.index') }}" class=" waves-effect">
+                             <i class="mdi mdi-account-outline"></i>
+                             <span>Toko</span>
+                         </a>
+                     </li>
 
-                 <li>
-                     <a href="{{ route('staff.index') }}" class=" waves-effect">
-                         <i class="mdi mdi-account-outline"></i>
-                         <span>Staff Desa</span>
-                     </a>
-                 </li>
+                     <li class="menu-title">Kriteria</li>
+                     <li>
+                         <a href="javascript: void(0);" class="has-arrow waves-effect">
+                             <i class="mdi mdi-checkbox-multiple-blank-outline">
+                             </i>
+                             <span>Kriteria</span>
+                         </a>
+                         <ul class="sub-menu" aria-expanded="false">
+                             <li><a href="{{ route('kriteria.index') }}">Kriteria</a></li>
+                             <li><a href="{{ route('bobot_kriteria.index') }}">Hitung Bobot Kriteria</a></li>
+                         </ul>
+                     </li>
+                     <li class="menu-title">Penilaian</li>
 
-                 <li>
-                     <a href="{{ route('position.index') }}" class=" waves-effect">
-                         <i class="mdi mdi-calendar-text"></i>
-                         <span>Posisi</span>
-                     </a>
-                 </li>
-                 <li class="menu-title">Kriteria</li>
+                     {{-- <a href="{{ route('kriteria.index') }}">
+                         <i class="mdi mdi-checkbox-multiple-blank-outline">
+                         </i>Kriteria
+                     </a> --}}
+                     <li>
+                         <a href="{{ route('penilaian.filter') }}" class=" waves-effect">
+                             <i class="mdi mdi-calendar-text"></i>
+                             <span>Penilaian</span>
+                         </a>
+                     </li>
+                 @else
+                     <li class="menu-title">Penilaian</li>
 
-                 <li>
-                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                         <span>Kriteria</span>
-                     </a>
-                     <ul class="sub-menu" aria-expanded="false">
-                         <li><a href="{{ route('aturan.index') }}">Aturan Kriteria</a></li>
-                         <li><a href="{{ route('kriteria.index') }}">Kriteria</a></li>
-                     </ul>
-                 </li>
-
+                     <li>
+                         <a href="{{ route('penilaian.filter') }}" class=" waves-effect">
+                             <i class="mdi mdi-calendar-text"></i>
+                             <span>Penilaian</span>
+                         </a>
+                     </li>
+                 @endif
 
              </ul>
          </div>

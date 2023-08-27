@@ -10,10 +10,17 @@ class KriteriaModel extends Model
     use HasFactory;
 
     protected $table = 'kriteria';
-    protected $fillable = ['kode_kriteria', 'nama_kriteria'];
+    protected $fillable = ['kode_kriteria', 'nama_kriteria', 'atribut_kriteria', 'bobot_kriteria'];
+    public $timestamps = false;
 
-    public function aturan()
+
+
+    public function atribut_penilaian()
     {
-        return $this->belongsTo(AturanModel::class);
+        return $this->hasMany(AtributPenilaianModel::class, 'kriteria_id', 'id');
+    }
+    public function penilaian()
+    {
+        return $this->hasMany(PenilaianModel::class, 'kriteria_id', 'id');
     }
 }

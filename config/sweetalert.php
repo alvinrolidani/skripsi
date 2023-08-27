@@ -179,7 +179,7 @@ return [
 
         'toast_close_button' => env('SWEET_ALERT_MIDDLEWARE_TOAST_CLOSE_BUTTON', false),
 
-        'timer' => env('SWEET_ALERT_MIDDLEWARE_ALERT_CLOSE_TIME', 2500),
+        'timer' => env('SWEET_ALERT_MIDDLEWARE_ALERT_CLOSE_TIME', 4000),
 
         'auto_display_error_messages' => env('SWEET_ALERT_AUTO_DISPLAY_ERROR_MESSAGES', false),
     ],

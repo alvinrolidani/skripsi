@@ -17,20 +17,40 @@ class KriteriaSeeder extends Seeder
     {
         $data = [
             [
-                'kode_kriteria' => 'C1',
-                'nama_kriteria' => 'Produktivitas'
+
+                'nama_kriteria' => 'Pelunasan Hutang',
+                'bobot_kriteria' => 0,
+                'atribut_kriteria' => 'benefit'
+
             ],
             [
-                'kode_kriteria' => 'C2',
-                'nama_kriteria' => 'Perilaku Kerja'
+
+                'nama_kriteria' => 'Jumlah Pengambilan Barang',
+                'bobot_kriteria' => 0,
+                'atribut_kriteria' => 'benefit'
+
             ],
             [
-                'kode_kriteria' => 'C3',
-                'nama_kriteria' => 'Pengembangan Diri'
+
+                'nama_kriteria' => 'Pembayaran Setoran (Perminggu)',
+                'bobot_kriteria' => 0,
+                'atribut_kriteria' => 'benefit'
+
             ],
             [
-                'kode_kriteria' => 'C4',
-                'nama_kriteria' => 'Keterampilan'
+
+                'nama_kriteria' => 'Lokasi Toko',
+                'bobot_kriteria' => 0,
+                'atribut_kriteria' => 'benefit'
+
+            ],
+
+            [
+
+                'nama_kriteria' => 'Jarak Tempuh',
+                'bobot_kriteria' => 0,
+                'atribut_kriteria' => 'cost'
+
             ]
         ];
         KriteriaModel::insert($data);

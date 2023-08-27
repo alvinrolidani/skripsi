@@ -11,11 +11,25 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
+
                                 <div class="mb-3">
                                     <label class="form-label">Nama Kriteria</label>
                                     <input type="text" class="form-control" placeholder="First name"
                                         value="{{ $kriteria->nama_kriteria }}" required name="nama_kriteria">
                                 </div>
+                                <div class="mb-3">
+
+                                    <label class="form-label">Atribut Kriteria</label>
+                                    <select name="atribut_kriteria" id="" class="form-select" required>
+                                        <option value="" selected disabled>--Pilih--</option>
+                                        <option value="benefit"
+                                            {{ $kriteria->atribut_kriteria == 'benefit' ? 'selected' : '' }}>
+                                            Benefit</option>
+                                        <option value="cost"
+                                            {{ $kriteria->atribut_kriteria == 'cost' ? 'selected' : '' }}>Cost</option>
+                                    </select>
+                                </div>
+
                             </div>
 
                         </div>

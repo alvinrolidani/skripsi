@@ -7,36 +7,48 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Data Posisi</h4>
+                    <h4 class="card-title">Data Kriteria</h4>
                     <br>
-                    <a href="{{ route('kriteria.create') }}" class="btn btn-success">Tambah</a>
+                    <a href="{{ route('kriteria.create') }}" class="btn btn-primary">Tambah</a>
                     <br>
                     <br>
 
-                    <input type="text" id="search" name="search" placeholder="Cari Disini.." class="form-control  "
-                        style="width: 20%;">
+
                     <br>
                     <div class="table-rep-plugin">
                         <div class="table-responsive mb-0" data-pattern="priority-columns">
-                            <table id="tech-companies-1" class="table table-striped">
+                            <table id="datatable" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Kriteria</th>
-
+                                        <th class="text-center">Atribut Kriteria</th>
+                                        <th class="text-center">Bobot Kriteria</th>
                                         <th class="text-center">Aksi</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
+
+
                                     @foreach ($kriteria as $key => $item)
                                         <tr>
-                                            <th class="text-center">{{ $key + $kriteria->firstItem() }}</th>
+                                            <th class="text-center">{{ $loop->iteration }}</th>
                                             <td class="text-center">{{ $item->nama_kriteria }}</td>
+                                            <td class="text-center">{{ ucwords($item->atribut_kriteria) }}</td>
+                                            <td class="text-center">{{ $item->bobot_kriteria * 100 }}%</td>
                                             <td class="text-center">
-                                                <a href="{{ route('kriteria.show', $item->id) }}" class="btn">
-                                                    <span class="mdi mdi-eye-outline" style="font-size:17px"></span>
-                                                </a>
+                                                @if (array_key_exists($item->id, $hitung))
+                                                    <a href="/atribut_penilaian/{{ $item->id }}" class="btn">
+                                                        <span class="mdi mdi-eye-outline" style="font-size:17px"></span>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('atribut_penilaian.create', $item->id) }}"
+                                                        class="btn">
+                                                        <span class="mdi mdi-plus" style="font-size:17px"></span>
+                                                    </a>
+                                                @endif
+
                                                 <a href="{{ route('kriteria.edit', $item->id) }}" class="btn">
                                                     <i class="mdi mdi-pencil-outline" style="font-size:17px"></i>
                                                 </a>
@@ -48,6 +60,7 @@
                                             </td>
 
                                         </tr>
+
                                         <div class="modal fade deletekriteria{{ $item->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -74,16 +87,10 @@
                                             <!-- /.modal-dialog -->
                                         </div>
                                     @endforeach
+
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-start">
-                                <p>Showing {{ $kriteria->firstItem() }} to {{ $kriteria->lastItem() }} of
-                                    {{ $kriteria->total() }}
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                {{ $kriteria->onEachSide(1)->links() }}
-                            </div>
+
                         </div>
                     </div>
 
