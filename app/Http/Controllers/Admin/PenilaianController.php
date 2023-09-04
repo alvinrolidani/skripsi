@@ -33,6 +33,21 @@ class PenilaianController extends Controller
             // 'penilaian' =>  ResultModel::where('tahun_awal', $tAwal)->where('tahun_akhir', $tAkhir)->with('toko')->orderByDesc('hasil')->get()->toArray()
         ];
 
+        $hitungKriteria = [
+            'benefit' => KriteriaModel::where('atribut_kriteria', 'benefit')->count(),
+            'cost' => KriteriaModel::where('atribut_kriteria', 'cost')->count(),
+            'nilai' => KriteriaModel::where('bobot_kriteria', '0')->count(),
+        ];
+
+
+        if ($hitungKriteria['nilai'] > 0 || $hitungKriteria['benefit'] < 2 || $hitungKriteria['cost'] < 1) {
+            if (auth()->user()->level == 'user') {
+                return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
+            } else {
+
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            }
+        }
         $total = [];
         $x = [];
         $y = [];
@@ -64,13 +79,13 @@ class PenilaianController extends Controller
         foreach ($result as $key1 => $value1) {
 
             if ($value1->hasil < 55 && $value1->hasil == $result->min('hasil')) {
-                $tess[$key1]['kesimpulan'] = 'Tidak Layak Diberikan Kredit Celana';
+                $tess[$key1]['kesimpulan'] = 'Tidak Layak Diberikan Suplai Barang';
             } elseif ($value1->hasil < 55 && $value1->hasil != $result->min('hasil')) {
                 $tess[$key1]['kesimpulan'] = 'Sedang Dalam Peninjauan';
             } elseif ($value1->hasil >= 55 && $value1->hasil <= 60) {
                 $tess[$key1]['kesimpulan'] = 'Sedang Dalam Peninjauan';
             } else {
-                $tess[$key1]['kesimpulan'] = 'Layak Diberikan Kredit Celana';
+                $tess[$key1]['kesimpulan'] = 'Layak Diberikan Suplai Baramg';
             }
         }
 
@@ -109,7 +124,21 @@ class PenilaianController extends Controller
             'tAkhir' => $request->tahun_akhir,
         ];
         // return response()->json($data['kriteria']);
+        $hitungKriteria = [
+            'benefit' => KriteriaModel::where('atribut_kriteria', 'benefit')->count(),
+            'cost' => KriteriaModel::where('atribut_kriteria', 'cost')->count(),
+            'nilai' => KriteriaModel::where('bobot_kriteria', '0')->count(),
+        ];
 
+
+        if ($hitungKriteria['nilai'] > 0 || $hitungKriteria['benefit'] < 2 || $hitungKriteria['cost'] < 1) {
+            if (auth()->user()->level == 'user') {
+                return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
+            } else {
+
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            }
+        }
 
         $count = [];
         $hitung = [];
@@ -194,6 +223,20 @@ class PenilaianController extends Controller
             'result' =>  ResultModel::where('id', $id)->with('toko')->first(),
 
         ];
+        $hitungKriteria = [
+            'benefit' => KriteriaModel::where('atribut_kriteria', 'benefit')->count(),
+            'cost' => KriteriaModel::where('atribut_kriteria', 'cost')->count(),
+            'nilai' => KriteriaModel::where('bobot_kriteria', '0')->count(),
+        ];
+        if ($hitungKriteria['nilai'] > 0 || $hitungKriteria['benefit'] < 2 || $hitungKriteria['cost'] < 1) {
+            if (auth()->user()->level == 'user') {
+                return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
+            } else {
+
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            }
+        }
+
         $penilaian = PenilaianModel::where('tahun_awal', $data['result']->tahun_awal)->where('tahun_akhir', $data['result']->tahun_akhir)->where('alternatif_id', $data['result']->alternatif_id)->with('kriteria.atribut_penilaian')->get();
 
         $count = [];
@@ -255,7 +298,26 @@ class PenilaianController extends Controller
             'result' =>  ResultModel::where('id', $id)->with('toko')->first(),
 
         ];
-        // $penilaian = PenilaianModel::where('tahun_awal', $data['result']->tahun_awal)->where('tahun_akhir', $data['result']->tahun_akhir)->where('alternatif_id', $data['result']->alternatif_id)->with('kriteria', 'atribut_penilaian')->get();
+
+        $hitungKriteria = [
+            'benefit' => KriteriaModel::where('atribut_kriteria', 'benefit')->count(),
+            'cost' => KriteriaModel::where('atribut_kriteria', 'cost')->count(),
+            'nilai' => KriteriaModel::where('bobot_kriteria', '0')->count(),
+        ];
+
+
+        if ($hitungKriteria['nilai'] > 0 || $hitungKriteria['benefit'] < 2 || $hitungKriteria['cost'] < 1) {
+            if (auth()->user()->level == 'user') {
+                return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
+            } else {
+
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            }
+        }
+
+
+
+
         $penilaian = KriteriaModel::with(['penilaian.atribut_penilaian', 'penilaian' => function ($query) use ($data) {
             $query->where([['alternatif_id', $data['result']->alternatif_id], ['tahun_awal', $data['result']->tahun_awal], ['tahun_akhir', $data['result']->tahun_akhir]]);
         }])->get();
@@ -352,7 +414,12 @@ class PenilaianController extends Controller
 
 
         if ($hitungKriteria['nilai'] > 0 || $hitungKriteria['benefit'] < 2 || $hitungKriteria['cost'] < 1) {
-            return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            if (auth()->user()->level == 'user') {
+                return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
+            } else {
+
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+            }
         } else {
 
             return view('admin.penilaian.filter', $data);
