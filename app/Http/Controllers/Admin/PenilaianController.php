@@ -45,7 +45,7 @@ class PenilaianController extends Controller
                 return redirect()->back()->with('toast_error', 'Silahkan Hubungi Admin untuk Menambahkan Kriteria dan Menghitung Bobotnya!');
             } else {
 
-                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian Hitung Bobotnya');
+                return redirect()->back()->with('toast_error', 'Silahkan Tambahkan 2 Kriteria Benefit dan 1 Kriteria Cost Kemudian diHitung Bobotnya');
             }
         }
         $total = [];
