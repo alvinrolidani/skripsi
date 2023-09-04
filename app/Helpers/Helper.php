@@ -62,7 +62,7 @@ function Hitung($tahun_awal = null, $tahun_akhir = null)
         $normalisasi[$key] = array_sum($keputusan[$key]);
     }
     // dd($keputusan, $normalisasi);
-
+    // dd($keputusan);
 
     //MATRIX NORMALISASI TERBOBOT
     foreach ($keputusan as $key => $value) {
